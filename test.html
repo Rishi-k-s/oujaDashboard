@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Player</title>
+</head>
+<body>
+
+<h1>Local Sound Player</h1>
+
+<button onclick="playPauseSound('sound1.mp3', 'sound1')">Play/Pause Sound 1</button>
+<button onclick="playPauseSound('sound2.mp3', 'sound2')">Play/Pause Sound 2</button>
+<button onclick="playPauseSound('sound3.mp3', 'sound3')">Play/Pause Sound 3</button>
+
+<script>
+    var audioElements = {};
+
+    function playPauseSound(soundFile, soundId) {
+        var audio = audioElements[soundId];
+
+        if (!audio) {
+            audio = new Audio(soundFile);
+            audioElements[soundId] = audio;
+        }
+
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+            audio.currentTime = 0; // Reset to the beginning
+        }
+    }
+</script>
+
+</body>
+</html>

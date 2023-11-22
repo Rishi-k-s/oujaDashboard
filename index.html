@@ -4,20 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Sound Player</title>
+    <title>Dhshina Board</title>
 </head>
 <body>
 
 <h1>Local Sound Player</h1>
 
-<button onclick="playSound('sound1.mp3')" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Play Sound 1</button>
-<button onclick="playSound('sound2.mp3')"class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Play Sound 2</button>
+<button onclick="playSound('./audio/Coyotes Gruff Barking.mp3')" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Play Sound 1</button>
+<button onclick="playSound('./audio/')"class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Play Sound 2</button>
 <button onclick="playSound('sound3.mp3')"class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Play Sound 3</button>
 
 <script>
-    function playSound(soundFile) {
-        var audio = new Audio(soundFile);
-        audio.play();
+    
+    var audioElements = {};
+
+    function playPauseSound(soundFile, soundId) {
+        var audio = audioElements[soundId];
+
+        if (!audio) {
+            audio = new Audio(soundFile);
+            audioElements[soundId] = audio;
+        }
+
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+            audio.currentTime = 0; // Reset to the beginning
+        }
     }
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
