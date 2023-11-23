@@ -1,48 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sound Player</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        
-    </style>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sound Player</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-<h1>Local Sound Player</h1>
-
-<div class="grid-container">
-    <div class="divStyle">
-        <button onclick="playPauseSound('./audio/Drone Dark 14.mp3', 'sound1')" id="button1">Play/Pause Sound 1</button>
-        <span id="sound1Duration">0:00/0:00</span>
-        <div>
-            <button onclick="stopSound('sound1')" id="stopButton1">Stop</button>
-            <button onclick="repeatSound('sound1')" id="repeatButton1">Repeat</button>
+        <h1 class = "mainHeading">Ouija Board Audio</h1>
+        <div class = "mainHeading">
+            <input type="text" class="text-input mainHeading " id="sentenceInput" placeholder="Enter Speaker Location">
         </div>
-        
-        
-    </div>
-    
-    <div>
-        <button onclick="playPauseSound('./audio/Coyotes Gruff Barking.mp3', 'sound2')" id="button2">Play/Pause Sound 2</button>
-        <button onclick="stopSound('sound2')" id="stopButton2">Stop</button>
-        <button onclick="repeatSound('sound2')" id="repeatButton2">Repeat</button>
-        <span id="sound2Duration">0:00/0:00</span>
-    </div>
-    
-    <div>
-        <button onclick="playPauseSound('sound3.mp3', 'sound3')" id="button3">Play/Pause Sound 3</button>
-        <button onclick="stopSound('sound3')" id="stopButton3">Stop</button>
-        <button onclick="repeatSound('sound3')" id="repeatButton3">Repeat</button>
-        <span id="sound3Duration">0:00/0:00</span>
-    </div>
-</div>
+        <h3 class = "mainHeading" >Ambience</h3>
+
+        <div class="grid-container">
+            <div class="divStyle">
+                <button onclick="playPauseSound('./audio/Drone Dark 14.mp3', 'sound1')" id="button1">Play/Pause Sound 1</button>
+                <span id="sound1Duration">0:00/0:00</span>
+                <div>
+                    <button onclick="stopSound('sound1')" id="stopButton1">Reset</button>
+                    <button onclick="repeatSound('sound1')" id="repeatButton1">Repeat</button>
+                </div>
+                
+                
+            </div>
+
+            <div class="divStyle">
+                <button onclick="playPauseSound('./audio/Drone Dark 14.mp3', 'sound2')" id="button2">Play/Pause Sound 1</button>
+                <span id="sound1Duration">0:00/0:00</span>
+                <div>
+                    <button onclick="stopSound('sound2')" id="stopButton2">Reset</button>
+                    <button onclick="repeatSound('sound2')" id="repeatButton2">Repeat</button>
+                </div>
+                
+                
+            </div>
+
+            <div class="divStyle">
+                <button onclick="playPauseSound('./audio/Drone Dark 14.mp3', 'sound3')" id="button2">Play/Pause Sound 1</button>
+                <span id="sound1Duration">0:00/0:00</span>
+                <div>
+                    <button onclick="stopSound('sound3')" id="stopButton2">Reset</button>
+                    <button onclick="repeatSound('sound3')" id="repeatButton2">Repeat</button>
+                </div>
+                
+                
+            </div>  
+            
+            <div>
+                <button onclick="playPauseSound('./audio/Coyotes Gruff Barking.mp3', 'sound2')" id="button2">Play/Pause Sound 2</button>
+                <button onclick="stopSound('sound2')" id="stopButton2">Stop</button>
+                <button onclick="repeatSound('sound2')" id="repeatButton2">Repeat</button>
+                <span id="sound2Duration">0:00/0:00</span>
+            </div>
+            
+            <div>
+                <button onclick="playPauseSound('sound3.mp3', 'sound3')" id="button3">Play/Pause Sound 3</button>
+                <button onclick="stopSound('sound3')" id="stopButton3">Stop</button>
+                <button onclick="repeatSound('sound3')" id="repeatButton3">Repeat</button>
+                <span id="sound3Duration">0:00/0:00</span>
+            </div>
+        </div>
 
 
 
-<script src="script.js"></script>
-<!-- <script src="https://cdn.tailwindcss.com"></script> -->
-</body>
+        <script src="script.js"></script>
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    </body>
 </html>

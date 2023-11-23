@@ -3,44 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Player</title>
     <style>
-        /* Style for the grid container */
-        .grid-container {
-            display: grid;
-            grid-template-rows: repeat(4, 1fr);
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px; /* Adjust the gap between items as needed */
-        }
-
-        /* Style for the buttons */
-        .button {
+        button {
+            background-color: #003049;
+            color: white;
             padding: 10px;
-            background-color: #3498db;
-            color: #fff;
+            margin: 5px;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
+
+        button.playing {
+            background-color: #669bbc;
+        }
+
+        input[type="range"] {
+            width: 100px;
+            margin-left: 10px;
+        }
     </style>
-    <title>Grid Buttons</title>
 </head>
 <body>
 
-    <!-- Grid container with buttons -->
-    <div class="grid-container">
-        <button class="button">Button 1</button>
-        <button class="button">Button 2</button>
-        <button class="button">Button 3</button>
-        <button class="button">Button 4</button>
-        <button class="button">Button 5</button>
-        <button class="button">Button 6</button>
-        <button class="button">Button 7</button>
-        <button class="button">Button 8</button>
-        <button class="button">Button 9</button>
-        <button class="button">Button 10</button>
-        <button class="button">Button 11</button>
-        <button class="button">Button 12</button>
-    </div>
+<h1>Local Sound Player</h1>
+
+<div>
+    <button onclick="playPauseSound('./audio/Drone Dark 14.mp3', 'sound1')" id="button1">Play/Pause Sound 1</button>
+    <button onclick="stopSound('sound1')" id="stopButton1">Stop</button>
+    <button onclick="repeatSound('sound1')" id="repeatButton1">Repeat</button>
+    <input type="range" min="0" max="1" step="0.1" value="1" onchange="changeVolume('sound1', this.value)">
+    <span id="sound1Duration">0:00/0:00</span>
+</div>
+
+<div>
+    <button onclick="playPauseSound('sound2.mp3', 'sound2')" id="button2">Play/Pause Sound 2</button>
+    <button onclick="stopSound('sound2')" id="stopButton2">Stop</button>
+    <button onclick="repeatSound('sound2')" id="repeatButton2">Repeat</button>
+    <input type="range" min="0" max="1" step="0.1" value="1" onchange="changeVolume('sound2', this.value)">
+    <span id="sound2Duration">0:00/0:00</span>
+</div>
+
+<div>
+    <button onclick="playPauseSound('sound3.mp3', 'sound3')" id="button3">Play/Pause Sound 3</button>
+    <button onclick="stopSound('sound3')" id="stopButton3">Stop</button>
+    <button onclick="repeatSound('sound3')" id="repeatButton3">Repeat</button>
+    <input type="range" min="0" max="1" step="0.1" value="1" onchange="changeVolume('sound3', this.value)">
+    <span id="sound3Duration">0:00/0:00</span>
+</div>
+
+<script>
+    var audioElements = {};
+
+    function playPauseSound(soundFile, soundId) {
+        var audio = audioElements[soundId];
+        var button = document.getElementById('button' + soundId.charAt(soundId.length - 1));
+
+        if (!audio) {
+            audio = new Audio(soundFile);
+            audioElements[soundId] = audio;
+            updateDurationDisplay(audio, soundId);
+        }
+
+        if (audio.paused) {
+            audio.play();
+            button.classList.add('playing');
+        } else {
+            audio.pause();
+            button.classList.remove('playing');
+        }
+
+        audio.addEventListener('timeupdate', function() {
+            updateDurationDisplay(audio, soundId);
+        });
+
+        audio.addEventListener('ended', function() {
+            button.classList.remove('playing');
+        });
+    }
+
+    function stopSound(soundId) {
+        var audio = audioElements[soundId];
+        var button = document.getElementById('button' + soundId.charAt(soundId.length - 1));
+        audio.pause();
+        audio.currentTime = 0;
+        button.classList.remove('playing');
+    }
+
+    function repeatSound(soundId) {
+        var audio = audioElements[soundId];
+        var repeatButton = document.getElementById('repeatButton' + soundId.charAt(soundId.length - 1));
+        if (audio.loop) {
+            audio.loop = false;
+            repeatButton.classList.remove('playing');
+        } else {
+            audio.loop = true;
+            repeatButton.classList.add('playing');
+        }
+    }
+
+    function changeVolume(soundId, volume) {
+        var audio = audioElements[soundId];
+        audio.volume = volume;
+    }
+
+    function updateDurationDisplay(audio, soundId) {
+        var durationElement = document.getElementById(soundId + 'Duration');
+        var currentDuration = formatTime(audio.currentTime);
+        var totalDuration = formatTime(audio.duration);
+        durationElement.textContent = currentDuration + '/' + totalDuration;
+    }
+
+    function formatTime(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = Math.floor(seconds % 60);
+        return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+    }
+</script>
 
 </body>
 </html>

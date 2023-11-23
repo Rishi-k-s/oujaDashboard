@@ -59,3 +59,21 @@ function formatTime(seconds) {
     var remainingSeconds = Math.floor(seconds % 60);
     return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
 }
+
+
+// JavaScript to store the entered sentence locally
+const sentenceInput = document.getElementById('sentenceInput');
+
+// Listen for input changes and store the value locally
+sentenceInput.addEventListener('input', function() {
+    const sentence = sentenceInput.value;
+    localStorage.setItem('storedSentence', sentence);
+});
+
+// Load the stored sentence on page load
+window.addEventListener('load', function() {
+    const storedSentence = localStorage.getItem('storedSentence');
+    if (storedSentence) {
+        sentenceInput.value = storedSentence;
+    }
+});
