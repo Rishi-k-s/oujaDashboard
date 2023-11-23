@@ -3,35 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sound Player</title>
+    <style>
+        /* Style for the grid container */
+        .grid-container {
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px; /* Adjust the gap between items as needed */
+        }
+
+        /* Style for the buttons */
+        .button {
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <title>Grid Buttons</title>
 </head>
 <body>
 
-<h1>Local Sound Player</h1>
-
-<button onclick="playPauseSound('sound1.mp3', 'sound1')">Play/Pause Sound 1</button>
-<button onclick="playPauseSound('sound2.mp3', 'sound2')">Play/Pause Sound 2</button>
-<button onclick="playPauseSound('sound3.mp3', 'sound3')">Play/Pause Sound 3</button>
-
-<script>
-    var audioElements = {};
-
-    function playPauseSound(soundFile, soundId) {
-        var audio = audioElements[soundId];
-
-        if (!audio) {
-            audio = new Audio(soundFile);
-            audioElements[soundId] = audio;
-        }
-
-        if (audio.paused) {
-            audio.play();
-        } else {
-            audio.pause();
-            audio.currentTime = 0; // Reset to the beginning
-        }
-    }
-</script>
+    <!-- Grid container with buttons -->
+    <div class="grid-container">
+        <button class="button">Button 1</button>
+        <button class="button">Button 2</button>
+        <button class="button">Button 3</button>
+        <button class="button">Button 4</button>
+        <button class="button">Button 5</button>
+        <button class="button">Button 6</button>
+        <button class="button">Button 7</button>
+        <button class="button">Button 8</button>
+        <button class="button">Button 9</button>
+        <button class="button">Button 10</button>
+        <button class="button">Button 11</button>
+        <button class="button">Button 12</button>
+    </div>
 
 </body>
 </html>
